@@ -28,5 +28,5 @@ object MangaApi {
 
 interface MangaApiService {
     @GET("mangas")
-    fun getMangas(): Call<List<Manga>>
+    suspend fun getMangas(): List<Manga>
 }

@@ -12,9 +12,10 @@ import com.example.mangaviewer_1.R
 import com.example.mangaviewer_1.network.Manga
 
 class MangaListAdapter(
-    private val context: Context,
-    private val dataset: List<Manga>
+    private val context: Context
 ): RecyclerView.Adapter<MangaListAdapter.MangaListViewHolder>() {
+
+    private var dataset: List<Manga> = listOf()
 
     class MangaListViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
         var mangaName: TextView = view.findViewById(R.id.manga_name)
@@ -33,10 +34,14 @@ class MangaListAdapter(
         val item = dataset[position]
         holder.mangaName.setText(item.mangaName)
         holder.latestChapter.setText(item.latestChapter)
-
     }
 
     override fun getItemCount(): Int {
         return dataset.size
+    }
+
+    fun setData(data: List<Manga>){
+        dataset = data
+        notifyDataSetChanged()
     }
 }
