@@ -2,15 +2,9 @@ package com.example.mangaviewer_1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.marsphotos.network.MangaApi
-import com.example.android.marsphotos.network.MangaApiService
 import com.example.mangaviewer_1.adapter.MangaListAdapter
-import com.example.mangaviewer_1.network.Manga
 import com.example.mangaviewer_1.viewmodel.MainActivityViewModel
-import retrofit2.Call
-import retrofit2.Response
 
 private val TAG = "MainActivity"
 

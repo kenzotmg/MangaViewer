@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".MangaChapterActivity"
+            android:exported="false" />
+        <activity
             android:name=".MangaActivity"
             android:exported="false" />
         <activity

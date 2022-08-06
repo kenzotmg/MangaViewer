@@ -1,4 +1,4 @@
-package com.example.android.marsphotos.network
+package com.example.mangaviewer_1.network
 
 import com.example.mangaviewer_1.network.Manga
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -7,6 +7,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 private const val BASE_URL =
     "http://192.168.0.10:8000"
@@ -29,4 +30,7 @@ object MangaApi {
 interface MangaApiService {
     @GET("mangas")
     suspend fun getMangas(): List<Manga>
+
+    @GET("{mangaName}/{chapter}")
+    suspend fun getMangaChapter(@Path("mangaName") mangaName : String, @Path("chapter") chapter : String): List<MangaChapter>
 }

@@ -5,9 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.android.marsphotos.network.MangaApi
-import com.example.android.marsphotos.network.MangaApiService
 import com.example.mangaviewer_1.network.Manga
+import com.example.mangaviewer_1.network.MangaApi
 import kotlinx.coroutines.launch
 import java.lang.Exception
 

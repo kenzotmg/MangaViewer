@@ -32,7 +32,7 @@ class MangaActivity : AppCompatActivity() {
 
         val data = (1..manga_chapters!!).toList()
         val recyclerView = findViewById<RecyclerView>(R.id.manga_chapters_grid)
-        recyclerView.adapter = MangaAdapter(data)
+        recyclerView.adapter = MangaAdapter(data, manga_name)
 
     }
 }
