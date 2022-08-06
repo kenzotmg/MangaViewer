@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MangaActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="10dp">
+    <ImageView
+        android:id="@+id/manga_avatar"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/solo_leveling"
+        tools:src="@drawable/solo_leveling">
+    </ImageView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+    <TextView
+        android:id="@+id/manga_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:text="Solo Leveling">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/manga_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="10dp"
+        android:paddingHorizontal="20dp"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        tools:text="No description.">
+
+    </TextView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/manga_chapters_grid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="10dp"
+        app:layoutManager=
+            "androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="5"
+        tools:itemCount="90"
+        tools:listitem="@layout/manga_view"/>
+
+</LinearLayout>

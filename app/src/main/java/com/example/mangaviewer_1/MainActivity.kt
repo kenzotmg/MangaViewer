@@ -48,5 +48,6 @@ class MainActivity : AppCompatActivity() {
 //
 //        })
 
+        title = "MangaViewer"
     }
 }

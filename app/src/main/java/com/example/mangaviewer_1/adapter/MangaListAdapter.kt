@@ -1,6 +1,7 @@
 package com.example.mangaviewer_1.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mangaviewer_1.MangaActivity
 import com.example.mangaviewer_1.R
 import com.example.mangaviewer_1.network.Manga
 
@@ -17,7 +19,7 @@ class MangaListAdapter(
 
     private var dataset: List<Manga> = listOf()
 
-    class MangaListViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
+    class MangaListViewHolder(val view: View): RecyclerView.ViewHolder(view) {
         var mangaName: TextView = view.findViewById(R.id.manga_name)
         var card_manga_view: CardView = view.findViewById(R.id.card_manga_list)
         var latestChapter: TextView = view.findViewById(R.id.manga_chapter)
@@ -34,6 +36,14 @@ class MangaListAdapter(
         val item = dataset[position]
         holder.mangaName.setText(item.mangaName)
         holder.latestChapter.setText(item.latestChapter)
+        holder.card_manga_view.setOnClickListener {
+            val context = holder.view.context
+            val intent = Intent(context, MangaActivity::class.java)
+            intent.putExtra(MangaActivity.MANGA_NAME, item.mangaName)
+            intent.putExtra(MangaActivity.MANGA_CHAPTERS, item.latestChapter.toInt())
+            //intent.putExtra(MangaActivity.MANGA_AVATAR)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
