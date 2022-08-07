@@ -1,9 +1,13 @@
 package com.example.mangaviewer_1
 
+import android.icu.lang.UCharacter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.LinearLayout
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mangaviewer_1.adapter.MangaChapterAdapter
 import com.example.mangaviewer_1.databinding.ActivityMangaChapterBinding
 import com.example.mangaviewer_1.viewmodel.MangaChapterActivityViewModel
@@ -27,6 +31,7 @@ class MangaChapterActivity : AppCompatActivity() {
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+        binding.rvMangaPages.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         binding.rvMangaPages.adapter = MangaChapterAdapter()
 
 
