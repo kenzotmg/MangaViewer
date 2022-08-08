@@ -8,7 +8,10 @@
             name="viewModel"
             type="com.example.mangaviewer_1.viewmodel.MangaChapterActivityViewModel" />
     </data>
-
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/manga_chapter_toolbar"></include>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,4 +26,5 @@
             tools:listitem="@layout/item_view"/>
 
     </LinearLayout>
+    </FrameLayout>
 </layout>

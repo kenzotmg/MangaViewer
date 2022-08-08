@@ -3,6 +3,9 @@ package com.example.mangaviewer_1
 import android.icu.lang.UCharacter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Layout
+import android.util.Log
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
@@ -28,6 +31,9 @@ class MangaChapterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding: ActivityMangaChapterBinding = DataBindingUtil.setContentView(this, R.layout.activity_manga_chapter)
         setContentView(binding.root)
+
+        setSupportActionBar(findViewById(R.id.chapter_tool_bar))
+        supportActionBar?.hide()
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
