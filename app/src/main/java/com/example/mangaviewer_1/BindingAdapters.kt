@@ -1,45 +1,30 @@
 package com.example.mangaviewer_1
 
 
-import android.content.Context
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.drawable.Drawable
-import android.icu.lang.UCharacter.GraphemeClusterBreak.L
-import android.net.Uri
 import android.util.Log
 import android.widget.ImageView
-import android.widget.LinearLayout
-import androidx.core.graphics.drawable.toBitmap
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.example.mangaviewer_1.adapter.MangaChapterAdapter
 import com.example.mangaviewer_1.network.MangaChapter
 import com.squareup.picasso.Picasso
-import com.squareup.picasso.Target
 import com.squareup.picasso.Transformation
 import java.lang.RuntimeException
-import java.net.URLEncoder
-import kotlin.math.log
 
-private val TAG = "BindingAdapters"
+private const val TAG = "BindingAdapters"
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?){
     imgUrl?.let {
-//        val imgUri = imgUrl.toUri().buildUpon().scheme("http").build()
-//        imgView.load(imgUri) {
-//            placeholder(R.drawable.loading_animation)
-//            error(R.drawable.ic_broken_image)
-
             val imgUri = imgUrl.toUri()
             Picasso.get().load(imgUri).transform(MyTransformation()).placeholder(R.drawable.loading_animation).into(imgView)
+
         }
     }
 
-class MyTransformation(): Transformation{
+class MyTransformation: Transformation{
 
     override fun transform(source: Bitmap): Bitmap {
         if (source.height > 4096 && source.width < 4096){
@@ -72,13 +57,6 @@ class MyTransformation(): Transformation{
         return Bitmap.createScaledBitmap(
             image, desiredWidth, height, true
         )
-//        }else if(desiredWidth > 0 && desiredHeight == 0){
-//            val ratio = desiredWidth.toFloat() / image.width.toFloat()
-//            val height = (image.height * ratio).toInt()
-//            return Bitmap.createScaledBitmap(
-//                image, desiredWidth, height, true
-//            )
-//        }
     }
 
     override fun key(): String {

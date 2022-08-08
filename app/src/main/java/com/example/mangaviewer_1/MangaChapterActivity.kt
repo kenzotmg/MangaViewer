@@ -7,10 +7,12 @@ import android.text.Layout
 import android.util.Log
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mangaviewer_1.MangaChapterActivity.Companion.MANGA_CHAPTER
 import com.example.mangaviewer_1.adapter.MangaChapterAdapter
 import com.example.mangaviewer_1.databinding.ActivityMangaChapterBinding
 import com.example.mangaviewer_1.viewmodel.MangaChapterActivityViewModel
