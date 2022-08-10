@@ -21,26 +21,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.mangas.observe(this) { mangas ->
             adapter.setData(mangas)
         }
-//        val client = MangaApi.retrofitService.getMangas()
-//        client.enqueue(object: retrofit2.Callback<List<Manga>> {
-//            override fun onResponse(
-//                call: Call<List<Manga>>,
-//                response: Response<List<Manga>>
-//            ){
-//                if(response.isSuccessful){
-//                    response.body()?.let{
-//                        val recyclerView = findViewById<RecyclerView>(R.id.manga_grid)
-//                        recyclerView.adapter = MangaListAdapter(this@MainActivity, response.body()!!)
-//                    }
-//
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<List<Manga>>, t: Throwable) {
-//                Log.d("TAG", ""+t.message)
-//            }
-//
-//        })
 
         title = "MangaViewer"
     }

@@ -7,6 +7,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="light_gray">#F8F8F8</color>
+    <color name="dark_gray">#969695</color>
+    <color name="sixty_opacity_black">#99000000</color>
+    <color name="light_blue">#00EAFC</color>
+    <color name="default_chapter_text_color">@color/black</color>
+    <color name="clicked_chapter_text_color">@color/white</color>
+    <color name="read_chapter_text_color">@color/black</color>
+    <color name="default_chapter_bg_color">@color/white</color>
+    <color name="clicked_chapter_bg_color">@color/light_blue</color>
+    <color name="read_chapter_bg_color">@color/dark_gray</color>
 
 </resources>
