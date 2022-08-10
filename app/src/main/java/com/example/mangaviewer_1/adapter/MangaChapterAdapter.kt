@@ -13,8 +13,8 @@ import com.example.mangaviewer_1.network.MangaChapter
 
 
 class MangaChapterAdapter(
-    val actionbar : androidx.appcompat.app.ActionBar?,
-    val bottomToolbar : Toolbar
+    private val actionbar : androidx.appcompat.app.ActionBar?,
+    private val bottomToolbar : Toolbar
     ) : ListAdapter<MangaChapter,
         MangaChapterAdapter.MangaChapterViewHolder>(DiffCallback) {
 
