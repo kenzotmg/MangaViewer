@@ -63,12 +63,9 @@ class MangaChapterActivity : AppCompatActivity() {
             if(this.mangaChapter.toInt() == 1){
                 Toast.makeText(this, "This is the first chapter", Toast.LENGTH_SHORT).show()
             } else {
-                intent.putExtra(MANGA_NAME, this.mangaName)
-                intent.putExtra(MANGA_CHAPTER, (this.mangaChapter.toInt() - 1).toString())
-                intent.putExtra(MANGA_LAST_CHAPTER, this.mangaLastChapter)
-                finish()
-                startActivity(intent)
-                overridePendingTransition(0,0)
+                this.mangaChapter = (this.mangaChapter.toInt() - 1).toString()
+                viewModel.getMangaChapter(this.mangaName, this.mangaChapter)
+                supportActionBar?.title = this.mangaChapter
             }
         }
 
@@ -76,20 +73,18 @@ class MangaChapterActivity : AppCompatActivity() {
             if(this.mangaChapter.toInt() == this.mangaLastChapter.toInt()){
                 Toast.makeText(this, "This is the last chapter", Toast.LENGTH_SHORT).show()
             }else{
+                this.mangaChapter = (this.mangaChapter.toInt() + 1).toString()
+                val mangaChapter = this.mangaChapter.toInt()
                 val mangaName = this.mangaName
                 val sharedPrefs = getSharedPreferences(R.string.manga_chapter_sharedprefs.toString(), Context.MODE_PRIVATE)
                 val lastReadChapter = sharedPrefs.getInt(this.mangaName, 0)
-                if(this.mangaChapter.toInt()+1 > lastReadChapter){
+                if(mangaChapter > lastReadChapter){
                     with (sharedPrefs.edit()) {
-                        putInt(mangaName, lastReadChapter+1)
+                        putInt(mangaName, mangaChapter)
                     }
                 }
-                intent.putExtra(MANGA_NAME, this.mangaName)
-                intent.putExtra(MANGA_CHAPTER, (this.mangaChapter.toInt() + 1).toString())
-                intent.putExtra(MANGA_LAST_CHAPTER, this.mangaLastChapter)
-                finish()
-                startActivity(intent)
-                overridePendingTransition(0,0)
+                viewModel.getMangaChapter(this.mangaName, this.mangaChapter)
+                supportActionBar?.title = this.mangaChapter
             }
         }
 
