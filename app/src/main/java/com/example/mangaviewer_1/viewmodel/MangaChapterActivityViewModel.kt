@@ -12,32 +12,29 @@ import java.lang.Exception
 
 private val TAG = "MangaChapterA.VModel"
 
-class MangaChapterActivityViewModel(
-    private val mangaName: String,
-    private val chapter: String
-) : ViewModel() {
+class MangaChapterActivityViewModel() : ViewModel() {
     private val _status = MutableLiveData<MangaApiStatus>()
     private val _mangaImages = MutableLiveData<List<MangaChapter>>()
-
+    private val _lastClickedChapter = MutableLiveData<Int>()
 
     val mangaImages : LiveData<List<MangaChapter>> = _mangaImages
+    val lastClickedChapter : LiveData<Int> = _lastClickedChapter
 
-
-    init {
-        getMangaChapter()
-    }
-
-    private fun getMangaChapter(){
+    fun getMangaChapter(nameOfManga: String, mangaChapter : String){
         _status.value = MangaApiStatus.LOADING
         viewModelScope.launch{
             try{
-                val chapterFormatted = String.format("%02d", chapter.toInt())
-                _mangaImages.value = MangaApi.retrofitService.getMangaChapter(mangaName, chapterFormatted)
+                val chapterFormatted = String.format("%02d", mangaChapter.toInt())
+                _mangaImages.value = MangaApi.retrofitService.getMangaChapter(nameOfManga, chapterFormatted)
                 _status.value = MangaApiStatus.DONE
             }catch (e: Exception){
                 Log.d(TAG, ""+e)
             }
         }
+    }
+
+    fun setClickedChapter(chapter : Int){
+        _lastClickedChapter.value = chapter
     }
 
 }

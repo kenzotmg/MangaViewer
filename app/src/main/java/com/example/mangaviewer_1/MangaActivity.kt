@@ -3,6 +3,7 @@ package com.example.mangaviewer_1
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -32,7 +33,7 @@ class MangaActivity : AppCompatActivity() {
         val sharedPrefs = getSharedPreferences(R.string.manga_chapter_sharedprefs.toString(), Context.MODE_PRIVATE)
 
         //this.findViewById<ImageView>(R.id.manga_avatar)
-        this.findViewById<TextView>(R.id.manga_name).setText(mangaName)
+        this.findViewById<TextView>(R.id.manga_name).text = mangaName
 
 
         val data = (1..mangaChapters!!).toList()
@@ -54,7 +55,6 @@ class MangaActivity : AppCompatActivity() {
         }
 
     }
-
 
 
     fun updateChapterButtonsStyle(chapter : Int){

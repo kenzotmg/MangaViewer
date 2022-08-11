@@ -36,7 +36,7 @@ class MangaChapterActivity : AppCompatActivity() {
     private lateinit var mangaLastChapter: String
 
     private val viewModel: MangaChapterActivityViewModel by viewModels {
-        MangaChapterActivityViewModelFactory(this.mangaName,this.mangaChapter)
+        MangaChapterActivityViewModelFactory()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +47,8 @@ class MangaChapterActivity : AppCompatActivity() {
         this.mangaName = intent?.extras?.getString(MANGA_NAME).toString()
         this.mangaChapter = intent?.extras?.getString(MANGA_CHAPTER).toString()
         this.mangaLastChapter = intent?.extras?.getInt(MANGA_LAST_CHAPTER).toString()
+
+        this.viewModel.getMangaChapter(this.mangaName, this.mangaChapter)
 
         // TOP TOOLBAR
         setSupportActionBar(findViewById(R.id.chapter_toolbar_top))
