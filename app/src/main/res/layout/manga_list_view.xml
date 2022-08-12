@@ -1,54 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="6dp">
+    >
 
+    <data>
+        <variable
+            name="manga"
+            type="com.example.mangaviewer_1.network.Manga" />
+    </data>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_manga_list"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="6dp">
 
-        <LinearLayout
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_manga_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/manga_cover"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:padding="2dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/solo_leveling"
-                tools:ignore="ImageContrastCheck"
-                />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/manga_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="serif"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:padding="5dp"
-                android:textAlignment="center"
-                android:layout_gravity="center_horizontal"
-                tools:text="solo leveling" />
+                <ImageView
+                    android:id="@+id/manga_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:padding="2dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/solo_leveling"
+                    tools:ignore="ImageContrastCheck"
+                    />
 
-            <TextView
-                android:id="@+id/manga_chapter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="2dp"
-                android:layout_gravity="center_horizontal"
-                tools:text="90" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/manga_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="serif"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:padding="5dp"
+                    android:textAlignment="center"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@{manga.mangaName}"
+                    tools:text="solo leveling" />
+
+                <TextView
+                    android:id="@+id/manga_chapter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@{manga.latestChapter}"
+                    tools:text="90" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
 
 
-</LinearLayout>
+    </LinearLayout>
+</layout>

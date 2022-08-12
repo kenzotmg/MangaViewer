@@ -2,26 +2,27 @@ package com.example.mangaviewer_1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.RecyclerView
-import com.example.mangaviewer_1.adapter.MangaListAdapter
-import com.example.mangaviewer_1.viewmodel.MainActivityViewModel
+import android.util.Log
+import androidx.fragment.app.commit
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import com.example.mangaviewer_1.databinding.ActivityMainBinding
 
 private val TAG = "MainActivity"
 
 
 class MainActivity : AppCompatActivity() {
-    private val viewModel = MainActivityViewModel()
+    private lateinit var navController : NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_manga_list)
-        val recyclerView = findViewById<RecyclerView>(R.id.manga_grid)
-        val adapter = MangaListAdapter(this)
-        recyclerView.adapter = adapter
-        viewModel.mangas.observe(this) { mangas ->
-            adapter.setData(mangas)
-        }
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        title = "MangaViewer"
+        // Get the navigation host fragment from this Activity
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        // Instantiate the navController using the NavHostFragment
+        navController = navHostFragment.navController
     }
 }

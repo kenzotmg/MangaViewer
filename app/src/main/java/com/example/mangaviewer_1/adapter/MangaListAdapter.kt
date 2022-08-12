@@ -1,56 +1,64 @@
 package com.example.mangaviewer_1.adapter
 
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mangaviewer_1.MangaActivity
+import com.example.mangaviewer_1.fragment.MangaListFragmentDirections
 import com.example.mangaviewer_1.R
+import com.example.mangaviewer_1.databinding.MangaListViewBinding
 import com.example.mangaviewer_1.network.Manga
 
 class MangaListAdapter(
-    private val context: Context
-): RecyclerView.Adapter<MangaListAdapter.MangaListViewHolder>() {
+    ): ListAdapter<Manga,
+        MangaListAdapter.MangaListViewHolder>(DiffCallback) {
 
-    private var dataset: List<Manga> = listOf()
+    companion object DiffCallback : DiffUtil.ItemCallback<Manga>() {
+        override fun areItemsTheSame(oldItem: Manga, newItem: Manga): Boolean {
+            return oldItem.mangaName == newItem.mangaName
+        }
 
-    class MangaListViewHolder(val view: View): RecyclerView.ViewHolder(view) {
-        var mangaName: TextView = view.findViewById(R.id.manga_name)
-        var cardMangaView: CardView = view.findViewById(R.id.card_manga_list)
-        var latestChapter: TextView = view.findViewById(R.id.manga_chapter)
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MangaListViewHolder {
-        val adapterLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.manga_list_view, parent, false)
-
-        return MangaListViewHolder(adapterLayout)
-    }
-
-    override fun onBindViewHolder(holder: MangaListViewHolder, position: Int) {
-        val item = dataset[position]
-        holder.mangaName.text = item.mangaName
-        holder.latestChapter.text = item.latestChapter
-        holder.cardMangaView.setOnClickListener {
-            val context = holder.view.context
-            val intent = Intent(context, MangaActivity::class.java)
-            intent.putExtra(MangaActivity.MANGA_NAME, item.mangaName)
-            intent.putExtra(MangaActivity.MANGA_CHAPTERS, item.latestChapter.toInt())
-            //intent.putExtra(MangaActivity.MANGA_AVATAR)
-            context.startActivity(intent)
+        override fun areContentsTheSame(oldItem: Manga, newItem: Manga): Boolean {
+            return oldItem.mangaName == newItem.mangaName
         }
     }
 
-    override fun getItemCount(): Int {
-        return dataset.size
+    class MangaListViewHolder(private val binding: MangaListViewBinding): RecyclerView.ViewHolder(binding.root) {
+        fun bind(manga: Manga){
+            binding.manga = manga
+            binding.cardMangaList.setOnClickListener {
+                val action = MangaListFragmentDirections
+                    .actionMangaListFragmentToMangaFragment(
+                        mangaName = manga.mangaName,
+                        mangaLastChapter = manga.latestChapter.toInt()
+                    )
+
+                binding.root.findNavController().navigate(action)
+
+            }
+
+            binding.executePendingBindings()
+        }
     }
 
-    fun setData(data: List<Manga>){
-        dataset = data
-        notifyDataSetChanged()
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MangaListViewHolder {
+        return MangaListViewHolder(MangaListViewBinding
+            .inflate(LayoutInflater.from(parent.context), parent, false))
+    }
+
+    override fun onBindViewHolder(holder: MangaListViewHolder, position: Int) {
+        val item = getItem(position)
+        holder.bind(item)
+//        holder.mangaName.text = item.mangaName
+//        holder.latestChapter.text = item.latestChapter
+//        holder.cardMangaView.setOnClickListener {
+//            val action = MangaListFragmentDirections.actionMangaListFragmentToMangaFragment(mangaName = item.mangaName, mangaLastChapter = item.latestChapter.toInt())
+//            holder.view.findNavController().navigate(action)
+//        }
     }
 }

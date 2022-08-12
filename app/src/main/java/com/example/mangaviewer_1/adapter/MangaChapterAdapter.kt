@@ -1,10 +1,7 @@
 package com.example.mangaviewer_1.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.ActionBar
-import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -13,12 +10,9 @@ import com.example.mangaviewer_1.network.MangaChapter
 
 
 class MangaChapterAdapter(
-    private val actionbar : androidx.appcompat.app.ActionBar?,
-    private val bottomToolbar : Toolbar
+    private val onClickCallBack: () -> Unit
     ) : ListAdapter<MangaChapter,
         MangaChapterAdapter.MangaChapterViewHolder>(DiffCallback) {
-
-    private val myActionBar = actionbar
 
     companion object DiffCallback : DiffUtil.ItemCallback<MangaChapter>() {
         override fun areItemsTheSame(oldItem: MangaChapter, newItem: MangaChapter): Boolean {
@@ -35,23 +29,12 @@ class MangaChapterAdapter(
     ):
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(mangaChapter: MangaChapter, actionbar: ActionBar?, bottomToolbar: Toolbar) {
+        fun bind(mangaChapter: MangaChapter, onClickCallBack : () -> Unit ) {
             binding.chapter = mangaChapter
-            // TOOLBAR
-            binding.root.setOnClickListener {
-                when(actionbar?.isShowing){
-                    true -> {
-                        bottomToolbar.visibility = View.INVISIBLE
-                        actionbar?.hide()
-                    }
-                    false -> {
-                        bottomToolbar.visibility = View.VISIBLE
-                        actionbar?.show()
-                    }
-                }
-
-            }
             binding.executePendingBindings()
+            binding.root.setOnClickListener{
+                onClickCallBack()
+            }
         }
     }
 
@@ -64,6 +47,6 @@ class MangaChapterAdapter(
 
     override fun onBindViewHolder(holder: MangaChapterViewHolder, position: Int) {
         val mangaChapter = getItem(position)
-        holder.bind(mangaChapter, myActionBar, bottomToolbar)
+        holder.bind(mangaChapter, onClickCallBack)
     }
 }
