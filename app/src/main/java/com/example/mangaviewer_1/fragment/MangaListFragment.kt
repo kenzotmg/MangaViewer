@@ -6,13 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mangaviewer_1.adapter.MangaAdapter
 import com.example.mangaviewer_1.adapter.MangaListAdapter
 import com.example.mangaviewer_1.databinding.FragmentMangaListBinding
-import com.example.mangaviewer_1.viewmodel.MangaListFragmentViewModel
 import com.example.mangaviewer_1.viewmodel.MangaViewerViewModel
 
 class MangaListFragment : Fragment(){

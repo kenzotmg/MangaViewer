@@ -53,8 +53,10 @@ class MangaFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerView = binding.recyclerView
+
         binding.mangaName.text = mangaName
         binding.mangaDescription.text = "No description."
+
         recyclerView.layoutManager = GridLayoutManager(context, 5)
 
         if(mangaChapters == 0){

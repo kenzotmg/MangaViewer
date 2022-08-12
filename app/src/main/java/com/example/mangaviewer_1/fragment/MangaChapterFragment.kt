@@ -4,24 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mangaviewer_1.R
 import com.example.mangaviewer_1.adapter.MangaChapterAdapter
 import com.example.mangaviewer_1.databinding.FragmentMangaChapterBinding
-import com.example.mangaviewer_1.viewmodel.MangaChapterFragmentViewModel
 import com.example.mangaviewer_1.viewmodel.MangaViewerViewModel
 
 class MangaChapterFragment : Fragment(){
 
     private var _binding: FragmentMangaChapterBinding? = null
-
 
     companion object {
         val MANGA_NAME = "mangaName"
@@ -32,10 +27,9 @@ class MangaChapterFragment : Fragment(){
     // onDestroyView.
     private val binding get() = _binding!!
 
+
     private lateinit var recyclerView: RecyclerView
-
     private val viewModel: MangaViewerViewModel by activityViewModels()
-
     private lateinit var mangaName: String
     private var mangaChapter = 0
     private var mangaLastChapter = 0
@@ -47,6 +41,7 @@ class MangaChapterFragment : Fragment(){
             mangaName = it.getString(MANGA_NAME).toString()
             mangaChapter = it.getInt(MANGA_CHAPTER)
         }
+
     }
 
     override fun onCreateView(
@@ -61,8 +56,10 @@ class MangaChapterFragment : Fragment(){
 
         binding.viewModel = viewModel
 
+        // Get manga chapter images
         viewModel.getMangaChapter(mangaName, mangaChapter.toString())
 
+        // Set observer to get/save manga last chapter
         viewModel.mangaLastChapter.observe(viewLifecycleOwner) {
             mangaLastChapter = it
         }
@@ -77,15 +74,19 @@ class MangaChapterFragment : Fragment(){
 
         recyclerView.adapter = MangaChapterAdapter(::toggleToolBar)
 
+
+        // Observer to update chapter number on TOP toolbar
         viewModel.lastClickedChapter.observe(viewLifecycleOwner) {
 
             binding.topToolbar.chapter.text = it.toString()
         }
 
+        // Goes back to previous fragment
         binding.topToolbar.toolbarBackButtonArrow.setOnClickListener {
             requireActivity().onBackPressed()
         }
 
+        // Set listener to back arrow on BOTTOM toolbar
         binding.bottomToolbar.toolbarBackArrow.setOnClickListener {
             if(mangaChapter == 1){
                 Toast.makeText(context, "This is the first chapter", Toast.LENGTH_SHORT).show()
@@ -95,6 +96,7 @@ class MangaChapterFragment : Fragment(){
             }
         }
 
+        // Set listener to forward arrow on BOTTOM toolbar
         binding.bottomToolbar.toolbarForwardArrow.setOnClickListener {
             if(mangaChapter == mangaLastChapter){
                 Toast.makeText(context, "This is the last chapter", Toast.LENGTH_SHORT).show()
@@ -113,6 +115,7 @@ class MangaChapterFragment : Fragment(){
         _binding = null
     }
 
+    // Toggle visibility of TOP AND BOTTOM toolbar
     fun toggleToolBar(){
         if(binding.topToolbar.root.isVisible){
             binding.topToolbar.root.visibility = View.INVISIBLE
