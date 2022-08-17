@@ -4,7 +4,8 @@ import com.squareup.moshi.Json
 
 data class Manga(
     @Json(name = "mangaName") val mangaName: String,
-    @Json(name = "latestChapter") val latestChapter: String
+    @Json(name = "latestChapter") val latestChapter: String,
+    @Json(name = "thumb") val thumb: String
 ) {
 
 }
