@@ -54,11 +54,5 @@ class MangaListAdapter(
     override fun onBindViewHolder(holder: MangaListViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
-//        holder.mangaName.text = item.mangaName
-//        holder.latestChapter.text = item.latestChapter
-//        holder.cardMangaView.setOnClickListener {
-//            val action = MangaListFragmentDirections.actionMangaListFragmentToMangaFragment(mangaName = item.mangaName, mangaLastChapter = item.latestChapter.toInt())
-//            holder.view.findNavController().navigate(action)
-//        }
     }
 }
