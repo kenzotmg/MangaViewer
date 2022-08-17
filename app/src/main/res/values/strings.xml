@@ -1,7 +1,19 @@
 <resources>
-    <string name="app_name">mangaviewer_1</string>
+    <string name="app_name">MangaViewer</string>
     <string name="manga_name">Death is the only ending for the villainess</string>
-    <string name="manga_chapter_sharedprefs">manga_viewer_manga_chapter_sharedprefs</string>
+    <string name="cache_file_name">manga_viewer_cache.json</string>
+    <string name="json_test">{
+   "readMangaChapters":{
+
+   },
+   "lastReadChapters":{
+
+   },
+   "lastClickedMangas":{
+
+   }
+}
+}</string>
     <drawable name="default_chapter_button_bg_color">@color/white</drawable>
     <drawable name="clicked_chapter_button_bg_color">@color/light_blue</drawable>
     <drawable name="read_chapter_button_bg_color">@color/light_blue</drawable>

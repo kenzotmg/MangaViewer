@@ -11,7 +11,7 @@ import com.example.mangaviewer_1.network.MangaChapter
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-private val TAG = "ViewModel"
+private const val TAG = "ViewModel"
 
 class MangaViewerViewModel : ViewModel() {
     private val _mangas = MutableLiveData<List<Manga>>()
@@ -22,7 +22,7 @@ class MangaViewerViewModel : ViewModel() {
     val mangas : LiveData<List<Manga>> = _mangas
     val mangaImages : LiveData<List<MangaChapter>> = _mangaImages
     val lastClickedChapter : LiveData<Int> = _lastClickedChapter
-    val mangaLastChapter : LiveData<Int> = _mangaLastChapter
+    val mangaLastChapter : LiveData<Int> = _mangaLastChapter // This is current manga`s last chapter
 
     init {
         getMangas()
