@@ -29,6 +29,10 @@
             android:name="mangaLastChapter"
             app:argType="integer"
             />
+        <argument
+            android:name="mangaThumbnail"
+            app:argType="string"
+            />
         <action
             android:id="@+id/action_mangaFragment_to_mangaChapterFragment"
             app:destination="@id/mangaChapterFragment"

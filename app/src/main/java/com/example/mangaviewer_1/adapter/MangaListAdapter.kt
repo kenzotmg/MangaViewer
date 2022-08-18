@@ -35,7 +35,8 @@ class MangaListAdapter(
                 val action = MangaListFragmentDirections
                     .actionMangaListFragmentToMangaFragment(
                         mangaName = manga.mangaName,
-                        mangaLastChapter = manga.latestChapter.toInt()
+                        mangaLastChapter = manga.latestChapter.toInt(),
+                        mangaThumbnail = manga.thumb
                     )
 
                 binding.root.findNavController().navigate(action)

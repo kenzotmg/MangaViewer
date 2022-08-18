@@ -24,6 +24,7 @@ class MangaFragment : Fragment(){
     companion object {
         val MANGA_NAME = "mangaName"
         val MANGA_CHAPTERS = "mangaLastChapter"
+        val MANGA_THUMB = "mangaThumbnail"
     }
 
     private var _binding: FragmentMangaBinding? = null
@@ -36,6 +37,7 @@ class MangaFragment : Fragment(){
     private lateinit var cacheManager: CacheManager
     private lateinit var mangaName: String
     private var mangaChapters = 0
+    private lateinit var mangaThumbnail: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +46,7 @@ class MangaFragment : Fragment(){
         arguments?.let {
             mangaName = it.getString(MANGA_NAME).toString()
             mangaChapters = it.getInt(MANGA_CHAPTERS)
+            mangaThumbnail = it.getString(MANGA_THUMB).toString()
         }
     }
 
@@ -64,7 +67,7 @@ class MangaFragment : Fragment(){
 
         binding.mangaName.text = mangaName
         binding.mangaDescription.text = "No description."
-
+        binding.thumbnailUrl = mangaThumbnail
         recyclerView.layoutManager = GridLayoutManager(context, 5)
 
         if(mangaChapters == 0){
